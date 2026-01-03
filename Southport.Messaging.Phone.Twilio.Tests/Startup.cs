@@ -7,8 +7,8 @@ namespace Southport.Messaging.Phone.Twilio.Tests
 {
     public static class Startup
     {
-        private static ITwilioOptions Options { get; set; }
-        public static ITwilioOptions GetOptions()
+        private static TwilioOptions Options { get; set; }
+        public static TwilioOptions GetOptions()
         {
             if (Options == null)
             {
@@ -35,15 +35,5 @@ namespace Southport.Messaging.Phone.Twilio.Tests
             return Options;
 
         }
-    }
-
-    public class TwilioOptions : ITwilioOptions
-    {
-        public string AccountSid { get; set; }
-        public string ApiKey { get; set; }
-        public string AuthToken { get; set; }
-        public bool UseSandbox { get; set; }
-        public string TestPhoneNumbers { get; set; }
-        public string MessagingServiceSid { get; set; }
     }
 }

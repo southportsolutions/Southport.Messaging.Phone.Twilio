@@ -25,8 +25,7 @@ namespace Southport.Messaging.Phone.Twilio.Shared
             {
                 _innerClient = new TwilioRestClient(
                     accountSid,
-                    authToken,
-                    httpClient: new SystemNetHttpClient(httpClient));
+                    authToken, httpClient: new SystemNetHttpClient(httpClient));
             }
             else
             {
@@ -38,7 +37,7 @@ namespace Southport.Messaging.Phone.Twilio.Shared
             }
         }
 
-        protected TwilioClientBase(HttpClient httpClient, ITwilioOptions options) : this(httpClient, options.AccountSid, options.ApiKey, options.AuthToken, options.UseSandbox, options.TestPhoneNumbers)
+        protected TwilioClientBase(HttpClient httpClient, TwilioOptions options) : this(httpClient, options.AccountSid, options.ApiKey, options.AuthToken, options.UseSandbox, options.TestPhoneNumbers)
         {
         }
     }
