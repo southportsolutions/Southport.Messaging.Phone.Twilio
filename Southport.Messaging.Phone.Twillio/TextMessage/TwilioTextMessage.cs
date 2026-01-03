@@ -16,7 +16,7 @@ namespace Southport.Messaging.Phone.Twilio.TextMessage
 {
     public class TwilioTextMessage : TwilioClientBase, ITextMessage
     {
-        public TwilioTextMessage(HttpClient httpClient, ITwilioOptions options) : base(httpClient, options)
+        public TwilioTextMessage(HttpClient httpClient, TwilioOptions options) : base(httpClient, options)
         {
             MessageServiceSid = options.MessagingServiceSid;
         }

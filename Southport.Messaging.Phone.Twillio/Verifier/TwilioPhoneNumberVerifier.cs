@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Options;
 using Southport.Messaging.Phone.Core.Shared;
 using Southport.Messaging.Phone.Twilio.Shared;
 using Twilio.Rest.Lookups.V1;
-using Twilio.Types;
 using HttpClient = System.Net.Http.HttpClient;
 
 namespace Southport.Messaging.Phone.Twilio.Verifier
@@ -14,7 +14,7 @@ namespace Southport.Messaging.Phone.Twilio.Verifier
         {
         }
 
-        public TwilioPhoneNumberVerifier(HttpClient httpClient, ITwilioOptions options) : base(httpClient, options)
+        public TwilioPhoneNumberVerifier(HttpClient httpClient, IOptions<TwilioOptions> options) : base(httpClient, options.Value)
         {
         }
 
@@ -39,11 +39,9 @@ namespace Southport.Messaging.Phone.Twilio.Verifier
                 default:
                     types = null;
                     break;
-
             }
 
-            var result = await PhoneNumberResource.FetchAsync(type: types, countryCode: countryCode, pathPhoneNumber: new PhoneNumber(phoneNumber), client: _innerClient);
-
+            var result = await PhoneNumberResource.FetchAsync(type: types, countryCode: countryCode, pathPhoneNumber: phoneNumber, client: _innerClient);
             return result;
         }
 
